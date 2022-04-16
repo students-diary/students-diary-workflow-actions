@@ -13,7 +13,7 @@ on:
         required: true
       job_id:
         required: true
-      env:
+      proj_env:
         required: true
 
 jobs:
@@ -43,4 +43,4 @@ jobs:
           build-args: |
             GITHUB_SHA=${{ secrets.github_sha }} > .env
             JOB_ID=${{ secrets.job_id }} >> .env
-            ENV=${{ secrets.env }} >> .env
+            ENV=${{ secrets.proj_env }} >> .env
