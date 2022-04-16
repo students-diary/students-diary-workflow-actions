@@ -17,24 +17,77 @@ on:
         required: true
       env:
         required: true
+      db_engine:
+        required: true
+      db_name:
+        required: true
+      db_user:
+        required: true
+      db_password:
+        required: true
+      db_host:
+        required: true
+      db_port:
+        required: true
+      secret_key:
+        required: true
+      sentry_dsn:
+        required: true
+      email_host:
+        required: true
+      email_host_user:
+        required: true
+      email_host_password:
+        required: true
+      email_port:
+        required: true
+      debug_logging_level:
+        required: true
+      error_logging_level:
+        required: true
+      server_address:
+        required: true
+      server_port:
+        required: true
+      redis_host:
+        required: true
+      redis_port:
+        required: true
+      redis_password:
+        required: true
+      celery_redis_db:
+        required: true
 
 jobs:
   build_and_push_dev_to_yandex_registry:
     name: Pass input and secrets to my-action
     runs-on: ubuntu-latest
     steps:
-
-      - name: Add GITHUB_SHA env property with commit github sha
-        run: echo "GITHUB_SHA=`echo ${{ secrets.github_sha }}`" >> $GITHUB_ENV
-
-      - name: Add JOB_ID env property with commit job id
-        run: echo "JOB_ID=`echo ${{ secrets.job_id }}`" >> $GITHUB_ENV
-
-      - name: Add JOB_ID env property with commit job id
-        run: echo "ENV=`echo ${{ secrets.env }}`" >> $GITHUB_ENV
-
-      - name: Add JOB_ID env property with commit job id
-        run: echo "RELEASE_VERSION=`echo ${{ secrets.release_version }}`" >> $GITHUB_ENV
+      - name: Add secrets to env
+        run: echo "GITHUB_SHA=`echo ${{ secrets.github_sha }}`" >> $GITHUB_ENV /
+             && echo "JOB_ID=`echo ${{ secrets.job_id }}`" >> $GITHUB_ENV /
+             && echo "ENV=`echo ${{ secrets.env }}`" >> $GITHUB_ENV /
+             && echo "RELEASE_VERSION=`echo ${{ secrets.release_version }}`" >> $GITHUB_ENV /
+             && echo "DB_ENGINE=`echo ${{ secrets.db_engine }}`" >> $GITHUB_ENV / 
+             && echo "DB_NAME=`echo ${{ secrets.db_name }}`" >> $GITHUB_ENV /
+             && echo "DB_USER=`echo ${{ secrets.db_user }}`" >> $GITHUB_ENV  /
+             && echo "DB_PASSWORD=`echo ${{ secrets.db_password }}`" >> $GITHUB_ENV /
+             && echo "DB_HOST=`echo ${{ secrets.db_host }}`" >> $GITHUB_ENV /
+             && echo "DB_PORT=`echo ${{ secrets.db_host }}`" >> $GITHUB_ENV /
+             && echo "SECRET_KEY=`echo ${{ secrets.secret_key }}`" >> $GITHUB_ENV /
+             && echo "SENTRY_DSN=`echo ${{ secrets.sentry_dsn }}`" >> $GITHUB_ENV /
+             && echo "EMAIL_HOST=`echo ${{ secrets.email_host }}`" >> $GITHUB_ENV /
+             && echo "EMAIL_HOST_USER=`echo ${{ secrets.email_host_user }}`" >> $GITHUB_ENV /
+             && echo "EMAIL_HOST_PASSWORD=`echo ${{ secrets.email_host_password }}`" >> $GITHUB_ENV /
+             && echo "EMAIL_PORT=`echo ${{ secrets.email_port }}`" >> $GITHUB_ENV /
+             && echo "DEBUG_LOGGING_LEVEL=`echo ${{ secrets.debug_logging_level }}`" >> $GITHUB_ENV /
+             && echo "ERROR_LOGGING_LEVEL=`echo ${{ secrets.error_logging_level }}`" >> $GITHUB_ENV /
+             && echo "SERVER_ADDRESS=`echo ${{ secrets.server_address }}`" >> $GITHUB_ENV /
+             && echo "SERVER_PORT=`echo ${{ secrets.server_port }}`" >> $GITHUB_ENV /
+             && echo "REDIS_HOST=`echo ${{ secrets.redis_host }}`" >> $GITHUB_ENV /
+             && echo "REDIS_PORT=`echo ${{ secrets.redis_port }}`" >> $GITHUB_ENV /
+             && echo "REDIS_PASSWORD=`echo ${{ secrets.redis_password }}`" >> $GITHUB_ENV /
+             && echo "CELERY_REDIS_DB=`echo ${{ secrets.celery_redis_db }}`" >> $GITHUB_ENV
 
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -59,3 +112,23 @@ jobs:
             JOB_ID=${{ env.JOB_ID }}
             ENV=${{ env.ENV }}
             RELEASE_VERSION=${{ env.RELEASE_VERSION }}
+            DB_ENGINE=${{ env.DB_ENGINE }}
+            DB_NAME=${{ env.DB_NAME }}
+            DB_USER=${{ env.DB_USER }}
+            DB_PASSWORD=${{ env.DB_PASSWORD }}
+            DB_HOST=${{ env.DB_HOST }}
+            DB_PORT=${{ env.DB_PORT }}
+            SECRET_KEY=${{ env.SECRET_KEY }}
+            SENTRY_DSN=${{ env.SENTRY_DSN }}
+            EMAIL_HOST=${{ env.EMAIL_HOST }}
+            EMAIL_HOST_USER=${{ env.EMAIL_HOST_USER }}
+            EMAIL_HOST_PASSWORD=${{ env.EMAIL_HOST_PASSWORD }}
+            EMAIL_PORT=${{ env.EMAIL_PORT }}
+            DEBUG_LOGGING_LEVEL=${{ env.DEBUG_LOGGING_LEVEL }}
+            ERROR_LOGGING_LEVEL=${{ env.ERROR_LOGGING_LEVEL }}
+            SERVER_ADDRESS=${{ env.SERVER_ADDRESS }}
+            SERVER_PORT=${{ env.SERVER_PORT }}
+            REDIS_HOST=${{ env.REDIS_HOST }}
+            REDIS_PORT=${{ env.REDIS_PORT }}
+            REDIS_PASSWORD=${{ env.REDIS_PASSWORD }}
+            CELERY_REDIS_DB=${{ env.CELERY_REDIS_DB }}
