@@ -13,54 +13,12 @@ on:
         required: true
       job_id:
         required: true
-      release_version:
-        required: true
       env:
-        required: true
-      db_engine:
-        required: true
-      db_name:
-        required: true
-      db_user:
-        required: true
-      db_password:
-        required: true
-      db_host:
-        required: true
-      db_port:
-        required: true
-      secret_key:
-        required: true
-      sentry_dsn:
-        required: true
-      email_host:
-        required: true
-      email_host_user:
-        required: true
-      email_host_password:
-        required: true
-      email_port:
-        required: true
-      debug_logging_level:
-        required: true
-      error_logging_level:
-        required: true
-      server_address:
-        required: true
-      server_port:
-        required: true
-      redis_host:
-        required: true
-      redis_port:
-        required: true
-      redis_password:
-        required: true
-      celery_redis_db:
         required: true
 
 jobs:
   build_and_push_dev_to_yandex_registry:
-    name: Pass input and secrets to my-action
+    name: build-push-action
     runs-on: ubuntu-latest
     steps:
 
@@ -82,28 +40,7 @@ jobs:
           push: true
           file: Dockerfile
           tags: ${{ secrets.registry_tag }}
-        env:
-          GITHUB_SHA: ${{ secrets.github_sha }}
-          JOB_ID: ${{ secrets.job_id }}
-          RELEASE_VERSION: ${{ secrets.release_version }}
-          ENV: ${{ secrets.env }}
-          DB_ENGINE: ${{ secrets.db_engine }}
-          DB_NAME: ${{ secrets.db_name }}
-          DB_USER: ${{ secrets.db_user }}
-          DB_PASSWORD: ${{ secrets.db_password }}
-          DB_HOST: ${{ secrets.db_host }}
-          DB_PORT: ${{ secrets.db_port }}
-          SECRET_KEY: ${{ secrets.secret_key }}
-          SENTRY_DSN: ${{ secrets.sentry_dsn }}
-          EMAIL_HOST: ${{ secrets.email_host }}
-          EMAIL_HOST_USER: ${{ secrets.email_host_user }}
-          EMAIL_HOST_PASSWORD: ${{ secrets.email_host_password }}
-          EMAIL_PORT: ${{ secrets.email_port }}
-          DEBUG_LOGGING_LEVEL: ${{ secrets.debug_logging_level }}
-          ERROR_LOGGING_LEVEL: ${{ secrets.error_logging_level }}
-          SERVER_ADDRESS: ${{ secrets.server_address }}
-          SERVER_PORT: ${{ secrets.server_port }}
-          REDIS_HOST: ${{ secrets.redis_host }}
-          REDIS_PORT: ${{ secrets.redis_port }}
-          REDIS_PASSWORD: ${{ secrets.redis_password }}
-          CELERY_REDIS_DB: ${{ secrets.celery_redis_db }}
+          build-args: |
+            GITHUB_SHA=${{ secrets.github_sha }} > .env
+            JOB_ID=${{ secrets.job_id }} >> .env
+            ENV=${{ secrets.env }} >> .env
