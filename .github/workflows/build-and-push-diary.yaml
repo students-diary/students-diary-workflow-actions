@@ -45,4 +45,4 @@ jobs:
           build-args: |
             GITHUB_SHA=${{ secrets.github_sha }} > .env
             JOB_ID=${{ secrets.job_id }} >> .env
-            ENV=${{ secrets.proj_env }} >> .env
+            ENV=${{ inputs.proj_env }} >> .env
