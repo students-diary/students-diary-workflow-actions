@@ -63,31 +63,6 @@ jobs:
     name: Pass input and secrets to my-action
     runs-on: ubuntu-latest
     steps:
-      - name: Add secrets to env
-        run: echo "GITHUB_SHA=`echo ${{ secrets.github_sha }}`" >> $GITHUB_ENV /
-             && echo "JOB_ID=`echo ${{ secrets.job_id }}`" >> $GITHUB_ENV /
-             && echo "ENV=`echo ${{ secrets.env }}`" >> $GITHUB_ENV /
-             && echo "RELEASE_VERSION=`echo ${{ secrets.release_version }}`" >> $GITHUB_ENV /
-             && echo "DB_ENGINE=`echo ${{ secrets.db_engine }}`" >> $GITHUB_ENV / 
-             && echo "DB_NAME=`echo ${{ secrets.db_name }}`" >> $GITHUB_ENV /
-             && echo "DB_USER=`echo ${{ secrets.db_user }}`" >> $GITHUB_ENV  /
-             && echo "DB_PASSWORD=`echo ${{ secrets.db_password }}`" >> $GITHUB_ENV /
-             && echo "DB_HOST=`echo ${{ secrets.db_host }}`" >> $GITHUB_ENV /
-             && echo "DB_PORT=`echo ${{ secrets.db_host }}`" >> $GITHUB_ENV /
-             && echo "SECRET_KEY=`echo ${{ secrets.secret_key }}`" >> $GITHUB_ENV /
-             && echo "SENTRY_DSN=`echo ${{ secrets.sentry_dsn }}`" >> $GITHUB_ENV /
-             && echo "EMAIL_HOST=`echo ${{ secrets.email_host }}`" >> $GITHUB_ENV /
-             && echo "EMAIL_HOST_USER=`echo ${{ secrets.email_host_user }}`" >> $GITHUB_ENV /
-             && echo "EMAIL_HOST_PASSWORD=`echo ${{ secrets.email_host_password }}`" >> $GITHUB_ENV /
-             && echo "EMAIL_PORT=`echo ${{ secrets.email_port }}`" >> $GITHUB_ENV /
-             && echo "DEBUG_LOGGING_LEVEL=`echo ${{ secrets.debug_logging_level }}`" >> $GITHUB_ENV /
-             && echo "ERROR_LOGGING_LEVEL=`echo ${{ secrets.error_logging_level }}`" >> $GITHUB_ENV /
-             && echo "SERVER_ADDRESS=`echo ${{ secrets.server_address }}`" >> $GITHUB_ENV /
-             && echo "SERVER_PORT=`echo ${{ secrets.server_port }}`" >> $GITHUB_ENV /
-             && echo "REDIS_HOST=`echo ${{ secrets.redis_host }}`" >> $GITHUB_ENV /
-             && echo "REDIS_PORT=`echo ${{ secrets.redis_port }}`" >> $GITHUB_ENV /
-             && echo "REDIS_PASSWORD=`echo ${{ secrets.redis_password }}`" >> $GITHUB_ENV /
-             && echo "CELERY_REDIS_DB=`echo ${{ secrets.celery_redis_db }}`" >> $GITHUB_ENV
 
       - name: Check out the repo
         uses: actions/checkout@v2
@@ -107,28 +82,28 @@ jobs:
           push: true
           file: Dockerfile
           tags: ${{ secrets.registry_tag }}
-          build-args: |
-            GITHUB_SHA=${{ env.GITHUB_SHA }}
-            JOB_ID=${{ env.JOB_ID }}
-            ENV=${{ env.ENV }}
-            RELEASE_VERSION=${{ env.RELEASE_VERSION }}
-            DB_ENGINE=${{ env.DB_ENGINE }}
-            DB_NAME=${{ env.DB_NAME }}
-            DB_USER=${{ env.DB_USER }}
-            DB_PASSWORD=${{ env.DB_PASSWORD }}
-            DB_HOST=${{ env.DB_HOST }}
-            DB_PORT=${{ env.DB_PORT }}
-            SECRET_KEY=${{ env.SECRET_KEY }}
-            SENTRY_DSN=${{ env.SENTRY_DSN }}
-            EMAIL_HOST=${{ env.EMAIL_HOST }}
-            EMAIL_HOST_USER=${{ env.EMAIL_HOST_USER }}
-            EMAIL_HOST_PASSWORD=${{ env.EMAIL_HOST_PASSWORD }}
-            EMAIL_PORT=${{ env.EMAIL_PORT }}
-            DEBUG_LOGGING_LEVEL=${{ env.DEBUG_LOGGING_LEVEL }}
-            ERROR_LOGGING_LEVEL=${{ env.ERROR_LOGGING_LEVEL }}
-            SERVER_ADDRESS=${{ env.SERVER_ADDRESS }}
-            SERVER_PORT=${{ env.SERVER_PORT }}
-            REDIS_HOST=${{ env.REDIS_HOST }}
-            REDIS_PORT=${{ env.REDIS_PORT }}
-            REDIS_PASSWORD=${{ env.REDIS_PASSWORD }}
-            CELERY_REDIS_DB=${{ env.CELERY_REDIS_DB }}
+        env:
+          GITHUB_SHA: ${{ secrets.github_sha }}
+          JOB_ID: ${{ secrets.job_id }}
+          RELEASE_VERSION: ${{ secrets.release_version }}
+          ENV: ${{ secrets.env }}
+          DB_ENGINE: ${{ secrets.db_engine }}
+          DB_NAME: ${{ secrets.db_name }}
+          DB_USER: ${{ secrets.db_user }}
+          DB_PASSWORD: ${{ secrets.db_password }}
+          DB_HOST: ${{ secrets.db_host }}
+          DB_PORT: ${{ secrets.db_port }}
+          SECRET_KEY: ${{ secrets.secret_key }}
+          SENTRY_DSN: ${{ secrets.sentry_dsn }}
+          EMAIL_HOST: ${{ secrets.email_host }}
+          EMAIL_HOST_USER: ${{ secrets.email_host_user }}
+          EMAIL_HOST_PASSWORD: ${{ secrets.email_host_password }}
+          EMAIL_PORT: ${{ secrets.email_port }}
+          DEBUG_LOGGING_LEVEL: ${{ secrets.debug_logging_level }}
+          ERROR_LOGGING_LEVEL: ${{ secrets.error_logging_level }}
+          SERVER_ADDRESS: ${{ secrets.server_address }}
+          SERVER_PORT: ${{ secrets.server_port }}
+          REDIS_HOST: ${{ secrets.redis_host }}
+          REDIS_PORT: ${{ secrets.redis_port }}
+          REDIS_PASSWORD: ${{ secrets.redis_password }}
+          CELERY_REDIS_DB: ${{ secrets.celery_redis_db }}
