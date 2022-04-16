@@ -9,6 +9,8 @@ on:
     secrets:
       ssh_key:
         required: true
+      passphrase:
+        required: true
       email_host_password:
         required: true
       db_name:
@@ -45,7 +47,7 @@ jobs:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
           key: ${{ secrets.ssh_key }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          passphrase: ${{ secrets.passphrase }}
           script: |
             cd ${{ inputs.directory }}
             echo EMAIL_HOST_PASSWORD=${{ secrets.email_host_password }} > .backend-env
