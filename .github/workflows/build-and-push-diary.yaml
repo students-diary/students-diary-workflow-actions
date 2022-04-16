@@ -13,8 +13,6 @@ on:
         required: true
       job_id:
         required: true
-      release_version:
-        required: true
       env:
         required: true
 
@@ -45,5 +43,4 @@ jobs:
           build-args: |
             GITHUB_SHA=${{ secrets.github_sha }} > .env
             JOB_ID=${{ secrets.job_id }} >> .env
-            RELEASE_VERSION=${{ secrets.release_version }} >> .env
             ENV=${{ secrets.env }} >> .env
