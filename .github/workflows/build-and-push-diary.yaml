@@ -2,6 +2,10 @@ name: Build&Push
 
 on:
   workflow_call:
+    inputs:
+      proj_env:
+        type: string
+        required: true
     secrets:
       registry_username:
         required: true
@@ -12,8 +16,6 @@ on:
       github_sha:
         required: true
       job_id:
-        required: true
-      proj_env:
         required: true
 
 jobs:
