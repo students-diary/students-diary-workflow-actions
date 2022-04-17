@@ -11,7 +11,7 @@ on:
         required: true
       github_sha:
         required: true
-      sentry_job_id:
+      sentry_source_map_job_id:
         required: false
       react_api:
        required: true
