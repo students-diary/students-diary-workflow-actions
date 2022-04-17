@@ -3,7 +3,7 @@ name: Build&Push
 on:
   workflow_call:
     inputs:
-      proj_env:
+      env:
         type: string
         required: true
     secrets:
@@ -43,6 +43,6 @@ jobs:
           file: Dockerfile
           tags: ${{ secrets.registry_tag }}
           build-args: |
-            GITHUB_SHA=${{ secrets.github_sha }} > .env
-            JOB_ID=${{ secrets.job_id }} >> .env
-            ENV=${{ inputs.proj_env }} >> .env
+            GITHUB_SHA=${{ secrets.github_sha }}
+            JOB_ID=${{ secrets.job_id }}
+            ENV=${{ inputs.env }}
