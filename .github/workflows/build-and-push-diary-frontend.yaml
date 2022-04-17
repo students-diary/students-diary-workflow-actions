@@ -48,8 +48,8 @@ jobs:
           tags: ${{ secrets.registry_tag }}
           build-args: |
             GITHUB_SHA=${{ secrets.github_sha }}
-            REACT_APP_API=${{ secrets.api_address }}
+            REACT_APP_API=${{ secrets.react_api }}
             REACT_APP_SENTRY=${{ secrets.sentry_dsn }}
             SENTRY_TOKEN=${{ secrets.sentry_token }}
-            REACT_APP_SENTRY_RELEASE=${{ secrets.sentry_job_id }}
+            REACT_APP_SENTRY_RELEASE=${{ secrets.sentry_source_map_job_id }}
             REACT_APP_SENTRY_PROJECT=${{ secrets.sentry_project_name }}
