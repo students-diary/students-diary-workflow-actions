@@ -16,15 +16,15 @@ on:
       github_sha:
         required: true
       sentry_job_id:
-        required: true
+        required: false
       react_api:
-       required: false
+       required: true
       sentry_dsn:
-        required: false
+        required: true
       sentry_project_name:
-        required: false
+        required: true
       sentry_token:
-        required: false
+        required: true
 
 jobs:
   build_and_push_to_yandex_registry:
