@@ -2,10 +2,6 @@ name: Build&Push frontend
 
 on:
   workflow_call:
-    inputs:
-      env:
-        type: string
-        required: true
     secrets:
       registry_username:
         required: true
