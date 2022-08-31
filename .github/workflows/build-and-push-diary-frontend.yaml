@@ -14,7 +14,9 @@ on:
       sentry_source_map_job_id:
         required: false
       react_api:
-       required: true
+        required: true
+      react_ws:
+        required: false
       sentry_dsn:
         required: true
       sentry_project_name:
@@ -49,6 +51,7 @@ jobs:
           build-args: |
             GITHUB_SHA=${{ secrets.github_sha }}
             REACT_APP_API=${{ secrets.react_api }}
+            REACT_APP_WS=${{ secrets.react_ws }}
             REACT_APP_SENTRY=${{ secrets.sentry_dsn }}
             SENTRY_TOKEN=${{ secrets.sentry_token }}
             REACT_APP_SENTRY_RELEASE=${{ secrets.sentry_source_map_job_id }}
