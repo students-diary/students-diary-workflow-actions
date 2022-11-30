@@ -27,7 +27,7 @@ on:
 jobs:
   build_and_push_to_yandex_registry:
     name: Pass input and secrets to my-action
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
 
       - name: Check out the repo
