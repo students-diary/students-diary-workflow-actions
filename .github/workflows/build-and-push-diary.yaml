@@ -41,6 +41,7 @@ jobs:
           password: ${{ secrets.registry_password }}
       - name: Push to Docker Hub
         uses: docker/build-push-action@v2
+        with:
           push: true
           file: Dockerfile
           tags: ${{ secrets.registry_tag }}
