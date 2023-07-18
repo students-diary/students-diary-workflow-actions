@@ -25,6 +25,8 @@ on:
         required: true
       metrics_counter:
         required: false
+      mui_license:
+        required: true
 
 jobs:
   build_and_push_to_yandex_registry:
@@ -62,3 +64,4 @@ jobs:
             REACT_APP_SENTRY_RELEASE=${{ secrets.sentry_source_map_job_id }}
             REACT_APP_SENTRY_PROJECT=${{ secrets.sentry_project_name }}
             REACT_APP_YANDEX_METRICS_COUNTER=${{ secrets.metrics_counter }}
+            REACT_APP_MUI_LICENSE=${{ secrets.mui_license }}
